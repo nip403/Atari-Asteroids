@@ -16,10 +16,7 @@ def main():
     while True:
         ship = Spaceship(screen)
         frame = 0
-        rocks = []
-
-        for i in range(1):
-            rocks.append(Asteroid(screen,5))
+        rocks = [Asteroid(screen,5) for _ in range(1)]
 
         while True:
             clock.tick(60)
