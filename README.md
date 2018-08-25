@@ -1,6 +1,8 @@
 # Atari-Asteroids
 A clone of the classic game Asteroids by Atari in Python 3.x using the Pygame module.
 
+The game is still in Alpha development.
+
 # Maths
 I draw the spaceship and the asteroid polygons using these equations:
 - x = cx + r * cos(theta)
