@@ -21,20 +21,17 @@ class Bullet:
 class Spaceship:
     def __init__(self,surf):
         self.bullets = []
-        self.mass = 100
         self.momentum = 0
         self.velocity = 0
 
         self.surf = surf
         self.s = self.surf.get_size()
 
-        self.vector = [0,0]
         self.pos = [i/2 for i in self.s]
         self.direction = -90
         self.radius = 20
 
         self.bullets = []
-        self.particles = []
 
     def draw(self):
         pygame.draw.circle(self.surf,(200*(self.momentum/5)+40,20*(self.momentum/5)+40,40 if not self.momentum else 0),[int(i) for i in self.pos],self.radius,0)
