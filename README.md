@@ -42,7 +42,7 @@ When you first enter the game, there are 2 game modes to choose from:
 There are 50 levels, but as it gets to the end, they are pretty much impossible.\
 There are 2 ways the asteroids can split:
 - Binary split (they split into 2)
-- Exponential split
+- Linear split
 
 For the latter, the first split will be in half, then each of the children will split in three, then in four etc.
 
