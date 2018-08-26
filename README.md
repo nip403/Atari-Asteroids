@@ -1,7 +1,7 @@
 # Atari-Asteroids
 A clone of the classic game Asteroids by Atari in Python 3.x using the Pygame module.
 
-The game is still in Alpha development.
+The game is now in Beta development.
 
 # Maths
 I draw the spaceship and the asteroid polygons using these equations:
@@ -14,23 +14,43 @@ Note that radians=0 begins at the rightmost point on the circle.
 Refer to this [wikipedia article](http://en.wikipedia.org/wiki/Circle#Equations) for more information on Parametric equations.
 
 # Gameplay
-I am still working on the core game mechanics. You can move the ship using the UP arrow.\
-Use the LEFT and RIGHT arrow keys to rotate the ship.
 
+#### Controls
+Use the UP arrow to move the ship forward.\
+Use the LEFT and RIGHT arrow keys to rotate the ship.\
+Left click or press 'e' to shoot in the direction the ship is facing.\
+
+#### Visuals
 The ship has a momentum which gives it a smooth movement, and that is shown by the ship's collision circle changing colour.\
-Currently, when a bullet hits an asteroid, it splits into 2, then 3, then 4 etc. children asteroids respectively.
+Particles will appear and fade into black as the player moves.
 
-In future, the game will progress toward 2 modes:
-- Endless waves
-- Levels
+The asteroids themselves are polygons which have an odd number of sides (and they rotate a random direction).\
+The more sides they have, the larger they will be.
 
-I am also planning to implement:
+#### Mechanics
+Asteroids and the ship cannot leave the map.\
+Every time they get hit, they will explode into several children asteroids, until the parent asteroid only has 3 sides, to which it will disappear.
+
+When you first enter the game, there are 2 game modes to choose from:
+- Campaign (Selection of levels increasing in difficulty)
+- Endless (Levels get progressively harder with no breaks)
+
+There are 50 levels, but as it gets to the end, they are pretty much impossible.\
+There are 2 ways the asteroids can split:
+- Binary split (they split into 2)
+- Exponential split
+
+For the latter, the first split will be in half, then each of the children will split in three, then in four etc.
+
+# To-do
 - A scoring system
-- A particle system to replace the collision circle
-- Startscreen
-- Deathscreen
-- Menu/level select
-- Multiple difficulties (it will affect the number of children spawned and speed)
+- Expand from minimalist design
+- Bonus levels
+- Obstacles
+- Powerups/Different projectiles
+- More accurate ship/asteroid collision detection
+- Highscore
+- Level medals
 
 # Requirements
 I am using the [Python 3.7](https://www.python.org/downloads/release/python-370/) IDLE.\
