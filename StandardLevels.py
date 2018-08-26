@@ -94,7 +94,6 @@ class Levelmaster:
     def run(self):
         ship = Spaceship(self.surf)
         lvl = font.render(f"Level {self.level}",True,(0,255,0))
-
         rocks = self.get_rocks()
 
         while True:
@@ -109,18 +108,18 @@ class Levelmaster:
                     if event.key == pygame.K_SPACE:
                         ship.shoot()
 
-                    elif event.key == pygame.K_e:
+                    elif event.key in [pygame.K_e,pygame.K_SLASH]:
                         ship.shoot()
 
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     if event.button == 1:
                         ship.shoot()
 
-            if pygame.key.get_pressed()[pygame.K_UP]:
-                ship.shove()
-            if pygame.key.get_pressed()[pygame.K_LEFT]:
+            if pygame.key.get_pressed()[pygame.K_UP] or pygame.key.get_pressed()[pygame.K_w]:
+                ship.boost()
+            if pygame.key.get_pressed()[pygame.K_LEFT] or pygame.key.get_pressed()[pygame.K_a]:
                 ship.rotate_left()
-            if pygame.key.get_pressed()[pygame.K_RIGHT]:
+            if pygame.key.get_pressed()[pygame.K_RIGHT] or pygame.key.get_pressed()[pygame.K_d]:
                 ship.rotate_right()
 
             self.surf.fill((0,0,0))
