@@ -1,4 +1,4 @@
-from Common import CommonScreens
+from Displays import CommonScreens
 from Levels import Level_manager
 
 import pygame
