@@ -20,9 +20,9 @@ For the collision functions between the ship, the bullets and the asteroids, I c
 # Gameplay
 
 #### Controls
-Use the UP arrow to move the ship forward.\
-Use the LEFT and RIGHT arrow keys to rotate the ship.\
-Left click or press 'e' to shoot in the direction the ship is facing.
+Use the UP arrow or the 'w' key to move the ship forward.\
+Use the LEFT and RIGHT arrow keys or the 'a' and 'd' to rotate the ship.\
+Left click or press 'e' or '/' to shoot in the direction the ship is facing.
 
 #### Visuals
 The ship has a momentum which gives it a smooth movement, and that is shown by the ship's collision circle changing colour.\
