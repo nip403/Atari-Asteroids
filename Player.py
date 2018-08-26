@@ -66,7 +66,7 @@ class Spaceship:
     def shoot(self):
         self.bullets.append(Bullet(self.surf,self.direction,[self.pos[0]+20*math.cos(math.radians(self.direction)),self.pos[1]+20*math.sin(math.radians(self.direction))]))
         
-    def shove(self):
+    def boost(self):
         self.momentum = 5
         self.vector = [math.cos(math.radians(self.direction)),math.sin(math.radians(self.direction))]
         self.vector = [i/math.sqrt(sum(e**2 for e in self.vector)) * self.momentum for i in self.vector]
