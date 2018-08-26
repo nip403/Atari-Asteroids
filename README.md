@@ -28,8 +28,10 @@ Left click or press 'e' to shoot in the direction the ship is facing.\
 The ship has a momentum which gives it a smooth movement, and that is shown by the ship's collision circle changing colour.\
 Particles will appear and fade into black as the player moves.
 
-The asteroids themselves are polygons which have an odd number of sides (and they rotate a random direction).\
+The asteroids themselves are polygons which have an odd number of sides.\
 The more sides they have, the larger they will be.
+
+The asteroids rotate in a random direction as they move, hence the name of this repository.
 
 #### Mechanics
 Asteroids and the ship cannot leave the map.\
@@ -44,7 +46,8 @@ There are 2 ways the asteroids can split:
 - Binary split (they split into 2)
 - Linear split
 
-For the latter, the first split will be in half, then each of the children will split in three, then in four etc.
+For the latter, the first split will be in half, then each of the children will split in three, then in four etc.\
+When the parent is split, the vectors of the children will be evenly distributed in a circle.
 
 # To-do
 - A scoring system
