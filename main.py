@@ -1,9 +1,10 @@
-from Asteroid import Asteroid
-from Player import Spaceship,Bullet
+from Common import CommonScreens
+from Levels import Level_manager
 
 import pygame
 import math
 import random
+import sys
 
 s = [1000,700]
 
@@ -13,43 +14,12 @@ clock = pygame.time.Clock()
 pygame.display.set_caption("Asteroids by NIP")
 
 def main():
+    c = CommonScreens(screen)
+    l = Level_manager(screen)
+    c.startscreen()
+
     while True:
-        ship = Spaceship(screen)
-        frame = 0
-        rocks = [Asteroid(screen,5) for _ in range(1)]
-
-        while True:
-            clock.tick(60)
-            
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-
-                elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_SPACE:
-                        ship.shoot()
-
-            if pygame.key.get_pressed()[pygame.K_UP]:
-                ship.shove()
-            if pygame.key.get_pressed()[pygame.K_LEFT]:
-                ship.rotate_left()
-            if pygame.key.get_pressed()[pygame.K_RIGHT]:
-                ship.rotate_right()
-
-            screen.fill((0,0,0))
-            ship.draw()
-            ship.move()
-
-            rocks = ship.break_rocks(rocks)
-
-            for i in rocks:
-                i.draw()
-                i.move()
-
-            pygame.display.flip()
-
-            if ship.collide(rocks) or not len(rocks):
-                break
+        c.deathscreen(l.run(-1 if c.main_menu() else c.level_menu()))
 
 if __name__ == "__main__":
     main()
