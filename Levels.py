@@ -38,19 +38,19 @@ class Endless:
         elif level <= 10:
             Base_stats.base_stage = 4
             Base_stats._speed = 2
-            return [Asteroid(self.surf) for _ in range(level//1.2)]
+            return [Asteroid(self.surf) for _ in range(int(level//1.2))]
         elif level <= 15:
             Base_stats.base_stage = 5
             Base_stats._speed = 2.5
-            return [Asteroid(self.surf) for _ in range(level//1.5)]
+            return [Asteroid(self.surf) for _ in range(int(level//1.5))]
         elif level <= 20:
             Base_stats.base_stage = 6
             Base_stats._speed = 3
-            return [Asteroid(self.surf) for _ in range(level//1.7)]
+            return [Asteroid(self.surf) for _ in range(int(level//1.7))]
         elif level <= 25:
             Base_stats.base_stage = 7
             Base_stats._speed = 4
-            return [Asteroid(self.surf) for _ in range(level//2)]
+            return [Asteroid(self.surf) for _ in range(int(level//2))]
         else:
             Base_stats.base_stage = 8
             Base_stats._speed = 5
