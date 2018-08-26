@@ -13,6 +13,10 @@ Note that radians=0 begins at the rightmost point on the circle.
 
 Refer to this [wikipedia article](http://en.wikipedia.org/wiki/Circle#Equations) for more information on Parametric equations.
 
+For the collision functions between the ship, the bullets and the asteroids, I couldn't use the builtin Rect system native to Pygame, so my function calculates the distance between the two objects (excluding the radii) and checks whether it is positive:
+
+![](https://latex.codecogs.com/gif.latex?\sqrt{(ship.x-rock.x)^{2}&plus;(ship.y-rock.y)^{2}}&space;-&space;r1&space;-&space;r2&space;<&space;0)
+
 # Gameplay
 
 #### Controls
