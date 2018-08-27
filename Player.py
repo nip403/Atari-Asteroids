@@ -4,7 +4,7 @@ import random
 
 class Bullet:
     def __init__(self,surf,direction,pos):
-        self.speed = 10
+        self.speed = 15
         self.vector = [0,0]
         self.direction = direction
         self.surf = surf
@@ -58,10 +58,10 @@ class Spaceship:
         self.bullets = [i for i in self.bullets if all(0 <= i.pos[e] <= self.surf.get_size()[e] for e in range(2))]
 
     def rotate_left(self):
-        self.direction -= 5
+        self.direction -= 4
 
     def rotate_right(self):
-        self.direction += 5
+        self.direction += 4
 
     def shoot(self):
         self.bullets.append(Bullet(self.surf,self.direction,[self.pos[0]+20*math.cos(math.radians(self.direction)),self.pos[1]+20*math.sin(math.radians(self.direction))]))
