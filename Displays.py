@@ -16,7 +16,7 @@ class CommonScreens:
 
     def startscreen(self):
         title = self.font.render("Atari Asteroids",True,(255,255,255))
-        sub = self.font2.render("Version Alpha 0.0.2",True,(255,255,255))
+        sub = self.font2.render("Beta 1.4",True,(255,255,255))
         foot = self.font2.render("Made by NIP",True,(255,255,255))
 
         while True:
