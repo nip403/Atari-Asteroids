@@ -72,7 +72,7 @@ levelData = {
 }
 
 __LEVEL_COUNT__ = len(levelData.keys())
-__BOSS_LEVELS__ = [4,10,18,28,40,44,45,46,47,48,49]
+__BOSS_LEVELS__ = [4,10,18,28,40,41,42,43,44,45,46,47,48,49]
 __FINAL_LEVEL__ = 50
     
 class Levelmaster:
