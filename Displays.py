@@ -1,4 +1,4 @@
-import StandardLevels
+import Levels
 
 import pygame
 import numpy
@@ -99,7 +99,7 @@ class CommonScreens:
         page_lim = [6,4] # x,y button res, size=100,100
         capacity = int(numpy.prod(page_lim))
 
-        pagesR = [[pygame.Rect(startx+((i%page_lim[0])*150),starty+((i//page_lim[0])*150),100,100) for i in range(capacity if n < math.ceil(StandardLevels.__LEVEL_COUNT__/capacity)-1 else StandardLevels.__LEVEL_COUNT__ % capacity)] for n in range(math.ceil(StandardLevels.__LEVEL_COUNT__/capacity))]
+        pagesR = [[pygame.Rect(startx+((i%page_lim[0])*150),starty+((i//page_lim[0])*150),100,100) for i in range(capacity if n < math.ceil(Levels.__LEVEL_COUNT__/capacity)-1 else Levels.__LEVEL_COUNT__ % capacity)] for n in range(math.ceil(Levels.__LEVEL_COUNT__/capacity))]
         current_page = 0
         buttons = pygame.Surface([24*len(pagesR),24],pygame.SRCALPHA)
 
@@ -140,7 +140,7 @@ class CommonScreens:
             self.surf.blit(back,(20,20))
 
             for p,r in enumerate(pagesR[current_page]):
-                pygame.draw.rect(self.surf,(255,255,255) if not 1+p+(current_page*capacity) in StandardLevels.__BOSS_LEVELS__+[StandardLevels.__FINAL_LEVEL__] else (255,0,0),r,0 if p == StandardLevels.__FINAL_LEVEL__ else 1)
+                pygame.draw.rect(self.surf,(255,255,255) if not 1+p+(current_page*capacity) in Levels.__BOSS_LEVELS__+[Levels.__FINAL_LEVEL__] else (255,0,0),r,0 if p == Levels.__FINAL_LEVEL__ else 1)
 
                 l = self.font2.render(f"Level {p+1+(current_page*capacity)}",True,(255,255,255))
                 self.surf.blit(l,l.get_rect(center=r.center))
