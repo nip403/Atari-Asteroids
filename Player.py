@@ -87,7 +87,7 @@ class Spaceship:
         self.pos = [self.pos[i] + self.vector[i] for i in range(2)]
 
     def move(self):
-        self.momentum -= 0.1
+        self.momentum -= 0.05
 
         if self.momentum <= 0:
             self.momentum = 0
