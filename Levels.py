@@ -78,7 +78,7 @@ __FINAL_LEVEL__ = 50
 class Levelmaster:
     def __init__(self,surf,level):
         self.surf = surf
-        self.lives = 5 * (5 + (level in (__BOSS_LEVELS__+[__FINAL_LEVEL__])))
+        self.lives = 5 + (5 * (level in (__BOSS_LEVELS__+[__FINAL_LEVEL__])))
         self.level = level+1
 
     def get_rocks(self):
