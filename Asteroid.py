@@ -13,7 +13,8 @@ class Asteroid(Base_stats):
         self.stage = self.base_stage if stage is None else stage
         self.size = self.stage*2 + 1
         self.surf = surf
-
+        self.colour = (255,255,255)
+        
         self.speed = self._speed if speed is None else speed
         self.radius = self.size * 10
 
@@ -46,7 +47,7 @@ class Asteroid(Base_stats):
         return [vector[0]*math.cos(math.radians(deg)) - vector[1]*math.sin(math.radians(deg)),vector[0]*math.sin(math.radians(deg)) + vector[1]*math.cos(math.radians(deg))]
 
     def draw(self):
-        pygame.draw.polygon(self.surf,(255,255,255),[[self.pos[0]+self.radius*math.cos(math.radians(i+self.rotation)),self.pos[1]+self.radius*math.sin(math.radians(i+self.rotation))] for i in range(0,360,int(360/self.size))],1)
+        pygame.draw.polygon(self.surf,self.colour,[[self.pos[0]+self.radius*math.cos(math.radians(i+self.rotation)),self.pos[1]+self.radius*math.sin(math.radians(i+self.rotation))] for i in range(0,360,int(360/self.size))],1)
 
     def move(self):
         self.pos = [self.pos[i] + self.vector[i] for i in range(2)]
