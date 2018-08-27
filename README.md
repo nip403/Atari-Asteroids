@@ -25,8 +25,8 @@ Use the LEFT and RIGHT arrow keys or the 'a' and 'd' to rotate the ship.\
 Left click or press 'e' or '/' to shoot in the direction the ship is facing.
 
 #### Visuals
-The ship has a momentum which gives it a smooth movement, and that is shown by the ship's collision circle changing colour.\
-Particles will appear and fade into black as the player moves.
+Particles will appear and fade into black as the player moves and dies.\
+Once an asteroid is hit, it splits into two, and a 'ghost' forms in place, which slowly fades from yellow to black.
 
 The asteroids themselves are polygons which have an odd number of sides.\
 The more sides they have, the larger they will be.
