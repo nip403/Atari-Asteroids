@@ -74,6 +74,33 @@ levelData = {
 __LEVEL_COUNT__ = len(levelData.keys())
 __BOSS_LEVELS__ = [4,10,18,28,40,41,42,43,44,45,46,47,48,49]
 __FINAL_LEVEL__ = 50
+
+def pause_screen(surf,ship,asteroids):
+    head = pygame.font.SysFont("Garamond MS",50).render("Game Paused",True,(255,255,255))
+    foot = pygame.font.SysFont("Garamond MS",20).render("Press ESC to resume",True,(255,255,255))
+
+    pause_surf = pygame.Surface(surf.get_size())
+    pause_surf.fill((0,0,0))
+    pause_surf.set_alpha(140)
+    pause_surf.blit(head,head.get_rect(center=[pause_surf.get_width()/2,pause_surf.get_height()/2-20]))
+    pause_surf.blit(foot,foot.get_rect(center=[pause_surf.get_width()/2,pause_surf.get_height()/2+50]))
+        
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+                    
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                return
+
+        for i in asteroids:
+            i.draw()
+
+        ship.draw()
+        surf.blit(pause_surf,(0,0))
+
+        pygame.display.flip()
     
 class Levelmaster:
     def __init__(self,surf,level):
@@ -93,7 +120,8 @@ class Levelmaster:
         
     def run(self):
         ship = Spaceship(self.surf)
-        lvl = font.render(f"Level {self.level}",True,(0,255,0))
+        #lvl = font.render(f"Level {self.level}",True,(0,255,0))
+        lvl = font.render("Level {}".format(self.level),True,(0,255,0))
         rocks = self.get_rocks()
 
         while True:
@@ -110,6 +138,9 @@ class Levelmaster:
 
                     elif event.key in [pygame.K_e,pygame.K_SLASH]:
                         ship.shoot()
+
+                    elif event.key == pygame.K_ESCAPE:
+                        pause_screen(self.surf,ship,rocks)
 
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     if event.button == 1:
@@ -140,15 +171,7 @@ class Levelmaster:
 
             if ship.collide(rocks):
                 self.lives -= 1
-
-                for iteration in range(50):
-                    if ship.collide(rocks):
-                        ship.reposition()
-                    else:
-                        break
-                else:
-                    if not ship.reposition(True,rocks):
-                        self.lives = 0
+                ship.set_blinking()
                     
             if not self.lives or not len(rocks):
                 return {"Lives":self.lives,"Level":self.level}
@@ -165,6 +188,7 @@ class Endless:
         self.surf = surf
         self.level = 1
         self.lives = 5
+        self.ship = Spaceship(self.surf)
 
     def next_level(self):
         self.level += 1
@@ -205,9 +229,9 @@ class Endless:
             return [Asteroid(self.surf) for _ in range(level)]
         
     def run(self):
-        ship = Spaceship(self.surf)
         rocks = self.get_rocks(self.level)
-        lvl = font.render(f"Level: {self.level}",True,(0,255,0))
+        #lvl = font.render(f"Level: {self.level}",True,(0,255,0))
+        lvl = font.render("Level: {}".format(self.level),True,(0,255,0))
 
         while True:
             clock.tick(60)
@@ -219,27 +243,34 @@ class Endless:
 
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
-                        ship.shoot()
+                        self.ship.shoot()
 
                     elif event.key in [pygame.K_e,pygame.K_SLASH]:
-                        ship.shoot()
+                        self.ship.shoot()
+
+                    elif event.key == pygame.K_ESCAPE:
+                        pause_screen(self.surf,self.ship,rocks)
 
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     if event.button == 1:
-                        ship.shoot()
+                        self.ship.shoot()
 
             if pygame.key.get_pressed()[pygame.K_UP] or pygame.key.get_pressed()[pygame.K_w]:
-                ship.boost()
+                self.ship.boost()
             if pygame.key.get_pressed()[pygame.K_LEFT] or pygame.key.get_pressed()[pygame.K_a]:
-                ship.rotate_left()
+                self.ship.rotate_left()
             if pygame.key.get_pressed()[pygame.K_RIGHT] or pygame.key.get_pressed()[pygame.K_d]:
-                ship.rotate_right()
+                self.ship.rotate_right()
+
+            if pygame.key.get_pressed()[pygame.K_SPACE]:
+                for i in range(10):
+                    self.ship.shoot()
 
             self.surf.fill((0,0,0))
-            ship.draw()
-            ship.move()
+            self.ship.draw()
+            self.ship.move()
 
-            rocks = ship.break_rocks(rocks)
+            rocks = self.ship.break_rocks(rocks)
 
             for i in rocks:
                 i.draw()
@@ -251,17 +282,9 @@ class Endless:
 
             pygame.display.flip()
 
-            if ship.collide(rocks):
+            if self.ship.collide(rocks):
                 self.lives -= 1
-
-                for iteration in range(50):
-                    if ship.collide(rocks):
-                        ship.reposition()
-                    else:
-                        break
-                else:
-                    if not ship.reposition(True,rocks):
-                        self.lives = 0
+                self.ship.set_blinking()
                     
             if not self.lives:
                 return {"Endless":True,"Level":self.level}

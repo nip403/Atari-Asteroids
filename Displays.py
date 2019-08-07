@@ -1,18 +1,29 @@
 import Levels
 
 import pygame
-import numpy
+#import numpy
 import math
 import sys
+
+##delete
+class numpy:
+    @classmethod
+    def prod(cls,arr):
+        a = 1
+        for i in arr:
+            a *= i
+        return a
+##
 
 pygame.init()
 
 class CommonScreens:
+    font = pygame.font.SysFont("Garamond MS",50)
+    font2 = pygame.font.SysFont("Garamond MS",20)
+        
     def __init__(self,surf):
         self.surf = surf
         self.s = self.surf.get_size()
-        self.font = pygame.font.SysFont("Garamond MS",50)
-        self.font2 = pygame.font.SysFont("Garamond MS",20)
 
     def startscreen(self):
         title = self.font.render("Atari Asteroids",True,(255,255,255))
@@ -37,7 +48,8 @@ class CommonScreens:
             pygame.display.flip()
 
     def deathscreen(self,result):
-        title = self.font.render(f"You died on round {result['Level']}" if result.get("Endless",False) else f"You {'beat' if result['Lives'] else 'died on'} level {result['Level']} with {result['Lives']} lives left",True,(255,255,255))
+        #title = self.font.render(f"You died on round {result['Level']}" if result.get("Endless",False) else f"You {'beat' if result['Lives'] else 'died on'} level {result['Level']} with {result['Lives']} lives left",True,(255,255,255))
+        title = self.font.render("You died on round {}".format(result["Level"]) if result.get("Endless",False) else "You {} level {} with {} lives left".format('beat' if result['Lives'] else 'died on',result['Level'],result['Lives']),True,(255,255,255))
         sub = self.font2.render("Click to go to main menu",True,(255,255,255))
 
         while True:
@@ -142,7 +154,8 @@ class CommonScreens:
             for p,r in enumerate(pagesR[current_page]):
                 pygame.draw.rect(self.surf,(255,255,255) if not 1+p+(current_page*capacity) in Levels.__BOSS_LEVELS__+[Levels.__FINAL_LEVEL__] else (255,0,0),r,0 if p == Levels.__FINAL_LEVEL__ else 1)
 
-                l = self.font2.render(f"Level {p+1+(current_page*capacity)}",True,(255,255,255))
+                #l = self.font2.render(f"Level {p+1+(current_page*capacity)}",True,(255,255,255))
+                l = self.font2.render("Level {}".format(p+1+(current_page*capacity)),True,(255,255,255))
                 self.surf.blit(l,l.get_rect(center=r.center))
 
             buttons.fill((0,0,0))
