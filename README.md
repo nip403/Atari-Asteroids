@@ -1,8 +1,6 @@
 # Atari-Asteroids
 Yet another clone of the classic game Asteroids by Atari in Python 3.x using the Pygame module.
 
-The game is now in Beta development.
-
 # Maths
 I draw the spaceship and the asteroid polygons using these equations:
 - x = cx + r * cos(theta)
@@ -13,7 +11,7 @@ Note that radians=0 begins at the rightmost point on the circle.
 
 Refer to this [wikipedia article](http://en.wikipedia.org/wiki/Circle#Equations) for more information on Parametric equations.
 
-For the collision functions between the ship, the bullets and the asteroids, I couldn't use the builtin Rect system native to Pygame, so my function calculates the distance between the two objects (excluding the radii) and checks whether it is positive:
+The collision function between the ship, the bullets and the asteroids calculates the distance between the two objects (excluding the radii) and checks whether it is positive:
 
 ![](https://latex.codecogs.com/gif.latex?\sqrt{(ship.x-rock.x)^{2}&plus;(ship.y-rock.y)^{2}}&space;-&space;r1&space;-&space;r2&space;<&space;0)
 
@@ -62,4 +60,4 @@ When the parent is split, the vectors of the children will be evenly distributed
 # Requirements
 I am using the [Python 3.7](https://www.python.org/downloads/release/python-370/) IDLE.\
 Python 3.6 and Pygame 1.7.x or above is required.\
-You can download pygame either [here](https://www.pygame.org/download.shtml),[here](https://bitbucket.org/pygame/pygame/downloads/) or [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pygame).
+You can download pygame either [here](https://www.pygame.org/download.shtml), [here](https://bitbucket.org/pygame/pygame/downloads/) or [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pygame).
