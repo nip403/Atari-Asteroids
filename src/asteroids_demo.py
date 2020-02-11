@@ -6,10 +6,10 @@ import math
 import random
 import sys
 
-s = [1000,700]
+s = [1000, 700]
 
 pygame.init()
-screen = pygame.display.set_mode(s,0,32)
+screen = pygame.display.set_mode(s, 0, 32)
 clock = pygame.time.Clock()
 pygame.display.set_caption("Asteroids by NIP")
 
