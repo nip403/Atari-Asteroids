@@ -1,19 +1,9 @@
 import Levels
 
 import pygame
-#import numpy
+import numpy
 import math
 import sys
-
-##delete
-class numpy:
-    @classmethod
-    def prod(cls,arr):
-        a = 1
-        for i in arr:
-            a *= i
-        return a
-##
 
 pygame.init()
 
